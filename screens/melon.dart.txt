@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+
+class Melon extends StatefulWidget {
+  @override
+  _MelonState createState() => _MelonState();
+}
+
+class _MelonState extends State<Melon> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  height: 300.0,
+                  width: double.infinity,
+                  color: Color(0xffFEC4AE),
+                ),
+                Positioned(
+                  top: 100,
+                  left: 200,
+                  child: Hero(
+                    tag: 'melonIcon',
+                    child: Image.asset('images/melon.PNG',),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 280.0, 0.0, 0.0),
+                  child: Container(
+                    height: 300.0,
+                    width: double.infinity,
+
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20.0),
+                        topLeft: Radius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+    );
+  }
+}

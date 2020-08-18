@@ -1,0 +1,140 @@
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.fromLTRB(15.0, 110.0, 0, 0),
+                  child: Text('Hello', style: TextStyle(
+                    fontSize: 80.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                  ),),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(15.0, 180.0, 0, 0),
+                  child: Text('there', style: TextStyle(
+                    fontSize: 80.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                  ),),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(240.0, 180.0, 0, 0),
+                  child: Text('.', style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 80.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                  ),),
+                ),
+        ],
+            ),
+          ),
+
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20.0, 20, 20.0, 0),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'EMAIL',
+                      labelStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.0,),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'PASSWORD',
+                      labelStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5.0,),
+                  Container(
+                    alignment: Alignment(1.0,0),
+                    padding: EdgeInsets.fromLTRB(20.0, 15.0, 0, 0),
+                    child: InkWell(
+                      child: Text('Forgot Password',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat',
+                        decoration: TextDecoration.underline,
+                      ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 40,),
+                  Container(
+                    height: 45.0,
+                    width: 400.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.red,
+                    ),
+                    child: Center(
+                      child: Text('Login', style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.0,),
+                  Container(
+                    height: 45.0,
+                    width: 400.0,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                        width: 2.0
+                      ),
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Center(child: Text('Sign-up', style: TextStyle(
+                      fontSize: 20.0,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                    ),)),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

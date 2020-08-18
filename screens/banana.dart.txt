@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+
+class Banana extends StatefulWidget {
+  @override
+  _BananaState createState() => _BananaState();
+}
+
+class _BananaState extends State<Banana> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  height: 300.0,
+                  width: double.infinity,
+                  color: Color(0xffFFD401),
+                ),
+                Positioned(
+                    top: 100,
+                    left: 200,
+                    child: Hero(
+                      tag: 'flutterLogo',
+                        child: Image.asset('images/banana.PNG',),
+                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 280.0, 0.0, 0.0),
+                  child: Container(
+                    height: 300.0,
+                    width: double.infinity,
+
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20.0),
+                        topLeft: Radius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+    );
+  }
+}

@@ -1,5 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_grocery_app_ui/elements/elements.dart';
+import 'package:flutter_grocery_app_ui/screens/apple_jist.dart';
+import 'package:flutter_grocery_app_ui/screens/iced_tea.dart';
+import 'package:flutter_grocery_app_ui/screens/lemode.dart';
+import 'package:flutter_grocery_app_ui/screens/login_page.dart';
+import 'package:flutter_grocery_app_ui/screens/orange_j.dart';
+import 'package:flutter_grocery_app_ui/screens/oranges.dart';
+import 'package:flutter_grocery_app_ui/screens/pineapple.dart';
+
+
+import 'banana.dart';
+import 'melon.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,6 +24,8 @@ class _HomePageState extends State<HomePage> {
   int numItems = 0;
   bool isClicked = false;
   int _currentTab = 0;
+  List<String> categories = ['Fruits', 'Drinks','Breads','Groceries'];
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +45,6 @@ class _HomePageState extends State<HomePage> {
           child: ConstrainedBox(
             constraints: BoxConstraints(),
             child: Column(
-
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 0.0),
@@ -41,10 +54,16 @@ class _HomePageState extends State<HomePage> {
                       CircleAvatar(
                         radius: 25.0,
                         backgroundColor: Colors.red,
-                        child: Icon(
-                          Icons.face,
-                          color: Color(0xff8B344F),
-                          size: 40.0,
+                        child: GestureDetector(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage())),
+                          child: Hero(
+                            tag: 'avatarLogo',
+                            child: Icon(
+                              Icons.face,
+                              color: Colors.white,
+                              size: 40.0,
+                            ),
+                          ),
                         ),
                       ),
                       IconButton(
@@ -54,363 +73,18 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   ),
-                Container(
-                  height: 100.0,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(35.0, 50.0, 0.0, 0.0),
-                    child: ListView(
-                      // This next line does the trick.
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              isClicked = true;
-                            });
-                          },
-                          child: Container(
-                            height: 100.0,
-                            child: Text('Fruits', style: TextStyle(
-                              fontSize: 40.0, color: clicked, fontWeight: FontWeight.bold
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 40.0,),
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              isClicked = true;
-                            });
-                          },
-                          child: Container(
-                            height: 100.0,
-                            child: Text('Bread', style: TextStyle(
-                                fontSize: 40.0, color: unclicked, fontWeight: FontWeight.bold
-                            ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 40.0,),
-                        Container(
-                          height: 100.0,
-                          child: Text('Drinks', style: TextStyle(
-                              fontSize: 40.0, color: unclicked, fontWeight: FontWeight.bold
-                          ),
-                          ),
-                        ),
-                      ],
-                    ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10.0, 15.0, 0.0, 5.0),
+                  child: SizedBox(
+                    height: 40,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categories.length,
+                        itemBuilder: (context, index) => buildCategory(index)),
                   ),
                 ),
-                Column(
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Stack(
-                          children: <Widget>[
-
-                            Container(
-                              margin: EdgeInsets.fromLTRB(40.0, 5.0, 20.0, 5.0),
-                              height: 260.0,
-                              width: 160.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xffFFD401),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-
-                            ),
-                            Positioned(
-                              top: 20,
-                                left: 40,
-                                child: Image.asset('images/banana.PNG'),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 40.0,
-                              child: Container(
-                                height: 100.0,
-                                width: 160.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    Text('Freshy Bananas', style: TextStyle(
-                                      fontSize: 15.0,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: -0.7,
-                                    ),),
-                                    Text('Rs 5 /- each', style: TextStyle(
-                                      fontSize: 15.0,
-                                      color: Colors.grey,
-                                      letterSpacing: -0.7,
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 10,
-                              child: GestureDetector(
-                                onTap: (){
-                                  setState(() {
-                                    numItems++;
-                                  });
-                                },
-                                child: Container(
-                                  height: 25.0,
-                                  width: 25.0,
-
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: Center(child: Icon(
-                                    Icons.add,
-                                    size: 18.0,
-                                    color: Colors.white,)),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Stack(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.fromLTRB(10.0, 50.0, 20.0, 0.0),
-                              height: 260.0,
-                              width: 160.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xffFEC4AE),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                            ),
-                            Positioned(
-                              top: 80,
-                              left: 9,
-                              child: Image.asset('images/melon.PNG'),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 10.0,
-                              child: Container(
-                                height: 100.0,
-                                width: 160.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    Text('Juicy Watermelon', style: TextStyle(
-                                      fontSize: 15.0,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: -0.7,
-                                    ),),
-                                    Text('Rs 50 /- each', style: TextStyle(
-                                      fontSize: 15.0,
-                                      color: Colors.grey,
-                                      letterSpacing: -0.7,
-                                    ),),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 10,
-                              child: GestureDetector(
-                                onTap: (){
-                                  setState(() {
-                                    numItems++;
-                                  });
-                                },
-                                child: Container(
-                                  height: 25.0,
-                                  width: 25.0,
-
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: Center(child: Icon(
-                                    Icons.add,
-                                    size: 18.0,
-                                    color: Colors.white,)),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Stack(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.fromLTRB(40.0, 5.0, 20.0, 5.0),
-                          height: 260.0,
-                          width: 160.0,
-                          decoration: BoxDecoration(
-                            color: Color(0xff00F596),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                        Positioned(
-                          top: 40,
-                          left: 50,
-                          child: Image.asset('images/orange.PNG'),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: 40.0,
-                          child: Container(
-                            height: 100.0,
-                            width: 160.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(20.0),
-                                bottomRight: Radius.circular(20.0),
-                              ),
-                              color: Colors.white,
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text('Fresh Oranges', style: TextStyle(
-                                  fontSize: 15.0,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: -0.7,
-                                ),),
-                                Text('Rs 10 /- each', style: TextStyle(
-                                  fontSize: 15.0,
-                                  color: Colors.grey,
-                                  letterSpacing: -0.7,
-                                ),),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 10,
-                          child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                numItems++;
-                              });
-                            },
-                            child: Container(
-                              height: 25.0,
-                              width: 25.0,
-
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Center(child: Icon(
-                                Icons.add,
-                                size: 18.0,
-                                color: Colors.white,)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Stack(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.fromLTRB(10.0, 50.0, 20.0, 5.0),
-                          height: 260.0,
-                          width: 160.0,
-                          decoration: BoxDecoration(
-                            color: Color(0xff01DDFF),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                        Positioned(
-                          top: 60,
-                          left: 18,
-                          child: Image.asset('images/pineapple.PNG'),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: 10.0,
-                          child: Container(
-                            height: 100.0,
-                            width: 160.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(20.0),
-                                bottomRight: Radius.circular(20.0),
-                              ),
-                              color: Colors.white,
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text('Prime Pineapples', style: TextStyle(
-                                  fontSize: 15.0,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: -0.7,
-                                ),),
-                                Text('Rs 60 /- each', style: TextStyle(
-                                  fontSize: 15.0,
-                                  color: Colors.grey,
-                                  letterSpacing: -0.7,
-                                ),),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 10,
-                          child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                numItems ++;
-                              });
-                            },
-                            child: Container(
-                              height: 25.0,
-                              width: 25.0,
-
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Center(child: Icon(
-                                Icons.add,
-                                size: 18.0,
-                                color: Colors.white,)),
-                            ),
-                          ),
-                        ),
-
-
-                      ],
-                    ),
-                  ],
-                ),
+                selectedIndex == 0 ? buildFruits() :selectedIndex == 1 ? buildDrinks() : buildEmpty(),
               ],
             ),
           ),
@@ -475,10 +149,273 @@ class _HomePageState extends State<HomePage> {
             title: SizedBox.shrink()
           ),
         ],
-
-
       ),
+    );
 
+
+  }
+
+  Widget buildEmpty(){
+    return Container(
+      height: 400,
+      width: double.infinity,
+      color: Colors.white,
     );
   }
+
+  Widget buildDrinks(){
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Hero(
+              tag: 'lemonadeIcon',
+              child: GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LemonadeScreen())),
+                child: NewReusableCard(
+                  cardColor: Color(0xffd52f1d),
+                  image: Image.asset('images/straw.png', scale: 2,),
+                  onPressed: (){
+                    setState(() {
+                      numItems++;
+                    });
+                  },
+                  l: 10.0,
+                  t: 5.0,
+                  b: 20.0,
+                  r: 5.0,
+                  imagePositiontop: 20.0,
+                  imagePositionLeft: 10.0,
+                  bottomHalfCardBottom: 0,
+                  bottomHalfCardLeft: 10.0,
+                  itemName: 'Refreshing Strawberry Juice',
+                  cost: 'Rs 120 /- each',
+                ),
+              ),
+            ),
+            Hero(
+              tag: 'applejistIcon',
+              child: GestureDetector(
+                onTap:() => Navigator.push(context, MaterialPageRoute(builder: (context) => AppleJistScreen())),
+                child: NewReusableCard(
+                  cardColor: Color(0xfff3780e),
+                  image: Image.asset('images/apple_jist.png', scale: 1.9,),
+                  onPressed: (){
+                    setState(() {
+                      numItems++;
+                    });
+                  },
+                  l: 0,
+                  t: 50.0,
+                  b: 20.0,
+                  r: 0.0,
+                  imagePositiontop: 80.0,
+                  imagePositionLeft: 0,
+                  bottomHalfCardBottom: 0,
+                  bottomHalfCardLeft: 0,
+                  itemName: 'Apple Zist',
+                  cost: 'Rs 140 /- each',
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        Row(
+          children: <Widget>[
+            Hero(
+              tag: 'orangeIcon',
+              child: GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => OrangeJuice())),
+                child: NewReusableCard(
+                  cardColor: Color(0xfffcbb3d),
+                  image: Image.asset('images/orangej.png', scale: 2.3,),
+                  onPressed: (){
+                    setState(() {
+                      numItems++;
+                    });
+                  },
+                  l: 10.0,
+                  t: 5.0,
+                  b: 20.0,
+                  r: 5.0,
+                  imagePositiontop: 40.0,
+                  imagePositionLeft: 10.0,
+                  bottomHalfCardBottom: 0,
+                  bottomHalfCardLeft: 10.0,
+                  itemName: 'Fresh Oranges',
+                  cost: 'Rs 10 /- each',
+                ),
+              ),
+            ),
+            Hero(
+              tag: 'teaIcon',
+              child: GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => IcedTea())),
+                child: NewReusableCard(
+                  cardColor: Color(0xff01DDFF),
+                  image: Image.asset('images/iced_tea.png', scale: 5,),
+                  onPressed: (){
+                    setState(() {
+                      numItems++;
+                    });
+                  },
+                  l: 0,
+                  t: 50.0,
+                  b: 20.0,
+                  r: 5.0,
+                  imagePositiontop: 110.0,
+                  imagePositionLeft: 0,
+                  bottomHalfCardBottom: 0,
+                  bottomHalfCardLeft: 0,
+                  itemName: 'Iced Tea',
+                  cost: 'Rs 90 /- each',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildFruits(){
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Hero(
+              tag: 'flutterLogo',
+              child: GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Banana())),
+                child: NewReusableCard(
+                  cardColor: Color(0xffFFD401),
+                  image: Image.asset('images/banana.PNG'),
+                  onPressed: (){
+                    setState(() {
+                      numItems++;
+                    });
+                  },
+                  l: 10.0,
+                  t: 5.0,
+                  b: 20.0,
+                  r: 5.0,
+                  imagePositiontop: 20.0,
+                  imagePositionLeft: 10.0,
+                  bottomHalfCardBottom: 0,
+                  bottomHalfCardLeft: 10.0,
+                  itemName: 'Freshy Bananas',
+                  cost: 'Rs 5 /- each',
+                ),
+              ),
+            ),
+            Hero(
+              tag: 'melonIcon',
+              child: GestureDetector(
+                onTap:() => Navigator.push(context, MaterialPageRoute(builder: (context) => Melon())),
+                child: NewReusableCard(
+                  cardColor: Color(0xffFEC4AE),
+                  image: Image.asset('images/melon.PNG'),
+                  onPressed: (){
+                    setState(() {
+                      numItems++;
+                    });
+                  },
+                  l: 0,
+                  t: 50.0,
+                  b: 20.0,
+                  r: 0.0,
+                  imagePositiontop: 80.0,
+                  imagePositionLeft: 0,
+                  bottomHalfCardBottom: 0,
+                  bottomHalfCardLeft: 0,
+                  itemName: 'Juicy Watermelon',
+                  cost: 'Rs 50 /- each',
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        Row(
+          children: <Widget>[
+            Hero(
+              tag: 'orangeIcon',
+              child: GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Oranges())),
+                child: NewReusableCard(
+                  cardColor: Color(0xff00F596),
+                  image: Image.asset('images/neworange.PNG'),
+                  onPressed: (){
+                    setState(() {
+                      numItems++;
+                    });
+                  },
+                  l: 10.0,
+                  t: 5.0,
+                  b: 20.0,
+                  r: 5.0,
+                  imagePositiontop: 40.0,
+                  imagePositionLeft: 10.0,
+                  bottomHalfCardBottom: 0,
+                  bottomHalfCardLeft: 10.0,
+                  itemName: 'Fresh Oranges',
+                  cost: 'Rs 10 /- each',
+                ),
+              ),
+            ),
+            Hero(
+              tag: 'pineIcon',
+              child: GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Pine())),
+                child: NewReusableCard(
+                  cardColor: Color(0xff01DDFF),
+                  image: Image.asset('images/pineapple.PNG'),
+                  onPressed: (){
+                    setState(() {
+                      numItems++;
+                    });
+                  },
+                  l: 0,
+                  t: 50.0,
+                  b: 20.0,
+                  r: 5.0,
+                  imagePositiontop: 60.0,
+                  imagePositionLeft: 0,
+                  bottomHalfCardBottom: 0,
+                  bottomHalfCardLeft: 0,
+                  itemName: 'Prime Pineapples',
+                  cost: 'Rs 60 /- each',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildCategory(int index) {
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Text(
+          categories[index],
+          style: TextStyle(
+            fontSize: 40.0,
+            fontWeight: FontWeight.bold,
+            color: selectedIndex == index ? Colors.black87 : Color(0xffCED2D5),
+          ),
+        ),
+      ),
+    );
+
+  }
 }
+
+

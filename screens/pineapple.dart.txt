@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+
+class Pine extends StatefulWidget {
+  @override
+  _PineState createState() => _PineState();
+}
+
+class _PineState extends State<Pine> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  height: 300.0,
+                  width: double.infinity,
+                  color: Color(0xff01DDFF),
+                ),
+                Positioned(
+                  top: 100,
+                  left: 200,
+                  child: Hero(
+                    tag: 'pineIcon',
+                    child: Image.asset('images/pineapple.PNG',),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 280.0, 0.0, 0.0),
+                  child: Container(
+                    height: 300.0,
+                    width: double.infinity,
+
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20.0),
+                        topLeft: Radius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+    );
+  }
+}

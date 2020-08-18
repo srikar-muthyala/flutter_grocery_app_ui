@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+
+class IcedTea extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  height: 300.0,
+                  width: double.infinity,
+                  color: Color(0xff01DDFF),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 280.0, 0.0, 0.0),
+                  child: Container(
+                    height: 300.0,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20.0),
+                        topLeft: Radius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 100,
+                  left: 20,
+                  child: Container(
+                    height: 100.0,
+                    width: 270.0,
+                    child: Text('Iced Tea', style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                      color: Colors.white,
+                      fontFamily: 'Fredoka',
+                    ),),
+                  ),
+                ),
+                Positioned(
+                  top: 340,
+                  left: 20,
+                  child: Container(
+                    height: 300.0,
+                    width: 240.0,
+                    child: Text('Contains-', style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black45,
+                        letterSpacing: 0.5
+                    ),),
+                  ),
+                ),
+                Positioned(
+                  top: 380,
+                  left: 40,
+                  child: Container(
+                    height: 300.0,
+                    width: 240.0,
+                    child: Text('- Freshly cooled tea\n- A slice of lemon', style: TextStyle(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black45,
+                      letterSpacing: 0.5,
+                    ),),
+                  ),
+                ),
+                Positioned(
+                  top: 500,
+                  left: 40,
+                  child: Container(
+                    height: 300.0,
+                    width: 240.0,
+                    child: Text('Rating - ⭐⭐⭐⭐⭐', style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      letterSpacing: 0.5,
+                    ),),
+                  ),
+                ),
+                Positioned(
+                  top: 100,
+                  left: 200,
+                  child: Hero(
+                    tag: 'teaIcon',
+                    child: Image.asset('images/iced_tea.png', scale: 2,),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+    );
+  }
+}
