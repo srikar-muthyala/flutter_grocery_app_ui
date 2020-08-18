@@ -1,0 +1,88 @@
+import 'package:flutter/material.dart';
+
+class NewReusableCard extends StatelessWidget {
+
+  final Color cardColor;
+  final Image image;
+  final Function onPressed;
+  final double l,t,b,r;
+  final double imagePositiontop, imagePositionLeft;
+  final double bottomHalfCardBottom, bottomHalfCardLeft;
+  final String itemName, cost;
+
+  const NewReusableCard({Key key, this.cardColor, this.image, this.onPressed, this.l, this.t, this.b, this.r, this.imagePositiontop, this.imagePositionLeft, this.bottomHalfCardBottom, this.bottomHalfCardLeft, this.itemName, this.cost}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.fromLTRB(l, t, b, r),
+          height: 260.0,
+          width: 160.0,
+          decoration: BoxDecoration(
+            color: cardColor,
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+        ),
+        Positioned(
+          top: imagePositiontop,
+          left: imagePositionLeft,
+          child: image,
+        ),
+        Positioned(
+          bottom: bottomHalfCardBottom,
+          left: bottomHalfCardLeft,
+          child: Container(
+            height: 100.0,
+            width: 160.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20.0),
+                bottomRight: Radius.circular(20.0),
+              ),
+              color: Colors.white,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+              children: <Widget>[
+                Text(itemName, style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: -0.7,
+                ),),
+                Text(cost, style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.grey,
+                  letterSpacing: -0.7,
+                ),),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 10,
+          child: GestureDetector(
+            onTap: onPressed,
+            child: Container(
+              height: 25.0,
+              width: 25.0,
+
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Center(child: Icon(
+                Icons.add,
+                size: 18.0,
+                color: Colors.white,)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
