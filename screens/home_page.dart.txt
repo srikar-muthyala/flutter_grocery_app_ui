@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_grocery_app_ui/elements/elements.dart';
 import 'package:flutter_grocery_app_ui/screens/apple_jist.dart';
+import 'package:flutter_grocery_app_ui/screens/cart.dart';
 import 'package:flutter_grocery_app_ui/screens/iced_tea.dart';
 import 'package:flutter_grocery_app_ui/screens/lemode.dart';
 import 'package:flutter_grocery_app_ui/screens/login_page.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_grocery_app_ui/screens/oranges.dart';
 import 'package:flutter_grocery_app_ui/screens/pineapple.dart';
 
 
+import '../variables.dart';
 import 'banana.dart';
 import 'melon.dart';
 
@@ -21,11 +23,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final Color clicked = Color(0xff000000);
   final Color unclicked = Color(0xffCED2D5);
-  int numItems = 0;
   bool isClicked = false;
   int _currentTab = 0;
   List<String> categories = ['Fruits', 'Drinks','Breads','Groceries'];
   int selectedIndex = 0;
+  bool addBanana = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +88,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 selectedIndex == 0 ? buildFruits() :selectedIndex == 1 ? buildDrinks() : buildEmpty(),
+
               ],
             ),
           ),
@@ -125,7 +129,9 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                   child: IconButton(
                     icon: Icon(Icons.shopping_cart, size: 20.0, color: Colors.white,),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
+                    },
                   ),
                 ),
 
@@ -293,7 +299,9 @@ class _HomePageState extends State<HomePage> {
                   image: Image.asset('images/banana.PNG'),
                   onPressed: (){
                     setState(() {
+                      banana++;
                       numItems++;
+                      banana == 1 ? items.add('Banana'):null;
                     });
                   },
                   l: 10.0,
@@ -319,6 +327,8 @@ class _HomePageState extends State<HomePage> {
                   onPressed: (){
                     setState(() {
                       numItems++;
+                      melon++;
+                      melon == 1 ? items.add('Watermelon'):null;
                     });
                   },
                   l: 0,

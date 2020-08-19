@@ -1,0 +1,176 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_grocery_app_ui/variables.dart';
+
+class Cart extends StatefulWidget {
+  @override
+  _CartState createState() => _CartState();
+}
+
+class _CartState extends State<Cart> {
+  int totalCost = 0;
+  int bananaC = 5;
+  int melonC = 50;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff189C74),
+        elevation: 0,
+      ),
+      body: Container(
+//        color: Colors.red,
+        height: 605.0,
+        width: 412.0,
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              top: 0,
+              child: Container(
+                height: 60.0,
+                width: 412.0,
+                color: Color(0xff189C74),
+              ),
+            ),
+            Positioned(
+              bottom: 110,
+              child: Container(
+                height: 450.0,
+                width: 412.0,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
+                ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 40, 30, 0),
+                    child: ListView.builder(
+                        itemCount: items.length,
+                        itemBuilder: (context, index){
+                          return ListTile(
+                            title: Text(items.toString()),
+                          );
+                        },
+                    ),
+                  ),
+
+
+
+
+//                child: Column(
+//                  children: <Widget>[
+//                    banana > 0 ?
+//                    Padding(
+//                      padding: const EdgeInsets.fromLTRB(30, 50, 50, 0),
+//                      child: Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                        children: <Widget>[
+//                          Text('Banana'),
+//                          Text(banana.toString()),
+//                          Text((bananaC * banana).toString())
+//                        ],
+//                      ),
+//                    )
+//                        :
+//                    melon >0 ?
+//                    Padding(
+//                      padding: const EdgeInsets.fromLTRB(30, 50, 50, 0),
+//                      child: Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                        children: <Widget>[
+//                          Text('Melon'),
+//                          Text(melon.toString()),
+//                          Text((melonC * melon).toString())
+//                        ],
+//                      ),
+//                    ):Container(),
+//                  ],
+//                ),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                height: 120.0,
+                width: 412.0,
+                decoration: BoxDecoration(
+                  color: Color(0xff189C74),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
+                ),
+
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: Container(
+                height: 50,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Center(
+                  child: Text(numItems.toString(), style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 140,
+              child: Container(
+                height: 50.0,
+                width: 100.0,
+                color: Colors.white,
+                child: Text(''),
+              ),
+            ),
+            Positioned(
+              top: 35,
+              child: Container(
+                height: 60.0,
+                width: 412.0,
+//                color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Item', style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+
+                      ),
+                      ),
+                      Text(
+                        'Quantity', style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+
+                      ),
+                      ),
+                      Text(
+                        'Total', style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+
+                      ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+
+      ),
+
+
+    );
+  }
+}

@@ -1,0 +1,4 @@
+int banana = 0;
+int melon = 0;
+int numItems = 0;
+List<String> items = [];
