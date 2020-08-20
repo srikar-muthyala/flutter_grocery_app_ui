@@ -16,6 +16,26 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             child: Stack(
               children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 150.0, 10.0, 0),
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        color: Colors.transparent,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.red,
+                          child: Hero(
+                            tag: 'avatarLogo',
+                              child: Icon(Icons.face, size: 50.0, color: Colors.white)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
                 Container(
                   padding: EdgeInsets.fromLTRB(15.0, 110.0, 0, 0),
                   child: Text('Hello', style: TextStyle(
@@ -32,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                     fontFamily: 'Montserrat',
                   ),),
                 ),
+
                 Container(
                   padding: EdgeInsets.fromLTRB(240.0, 180.0, 0, 0),
                   child: Text('.', style: TextStyle(
@@ -41,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                     fontFamily: 'Montserrat',
                   ),),
                 ),
-        ],
+              ],
             ),
           ),
 
