@@ -15,7 +15,7 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff189C74),
+        backgroundColor: Color(0xffd52f1d),
         elevation: 0,
       ),
       body: Container(
@@ -29,7 +29,7 @@ class _CartState extends State<Cart> {
               child: Container(
                 height: 60.0,
                 width: 412.0,
-                color: Color(0xff189C74),
+                color: Color(0xffd52f1d),
               ),
             ),
             Positioned(
@@ -93,7 +93,7 @@ class _CartState extends State<Cart> {
                 height: 120.0,
                 width: 412.0,
                 decoration: BoxDecoration(
-                  color: Color(0xff189C74),
+                  color: Color(0xffd52f1d),
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
                 ),
 
